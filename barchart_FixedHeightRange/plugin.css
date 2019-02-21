@@ -1,0 +1,17 @@
+.barchart__axis text{
+  fill: #888;
+  font-size: 12px;
+  font-family:Verdana, Geneva, sans-serif;
+}
+.yBar.barchart__axis text{
+  fill: #d5370b;
+  font-family:Verdana, Geneva, sans-serif;
+}
+.barchart__vallabel{
+  font-size: 12px;
+}
+.domain{
+  fill: none;
+  stroke: #e2e2e2;
+  stroke-width: 2;
+}
