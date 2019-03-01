@@ -26,7 +26,8 @@ function BarChart(settings, options) {
     this.data = [];
 
     this.colors = ["#70C1B3", "#247BA0", "#FFE066", "#F25F5C", "#50514F", "#F45B69", "#211103", "#5C8001", "#23395B", "#470063"];
-
+    this.useColorIndex = {};    // ← 一回使った色は、そのカテゴリ固定になるように記憶しておく
+    
     var margin = { top: 50, right: 50, bottom: 50, left: 120 },
         width = (options.width || 700) - margin.left - margin.right,
         height = (options.height || 500) - margin.top - margin.bottom;
@@ -151,7 +152,11 @@ BarChart.prototype.refresh = function () {
 
     bar.attr("class", "barchart__bar")
         .attr("fill", function (d, i) {
-            return that.colors[i];
+            if( that.useColorIndex[d.key] === undefined )　// ↓ 一回使った色は、そのカテゴリ固定になるように記憶しておく
+                that.useColorIndex[d.key] = Object.keys(that.useColorIndex).length;
+
+            return that.colors[that.useColorIndex[d.key]];
+            //            return that.colors[i];
         })
         .transition()
         .duration(500)
